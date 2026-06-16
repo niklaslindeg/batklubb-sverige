@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Båtklubbar i Sverige</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+  <aside id="sidebar">
+    <div id="sidebar-header">
+      <h1>⚓ Båtklubbar i Sverige</h1>
+      <input id="search" type="search" placeholder="Sök klubb eller ort..." autocomplete="off" />
+      <div id="stats"></div>
+    </div>
+    <ul id="club-list"></ul>
+  </aside>
+
+  <div id="map"></div>
+</div>
+
+<div id="popup-panel" class="hidden">
+  <button id="popup-close">✕</button>
+  <div id="popup-content"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  // ── Karta ──────────────────────────────────────────────────────────────────
+  const map = L.map("map", { center: [62.5, 16.5], zoom: 5 });
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  const boatIcon = L.divIcon({
+    className: "boat-marker",
+    html: "⚓",
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+  });
+
+  // ── State ──────────────────────────────────────────────────────────────────
+  let allClubs = [];
+  let markers = {};   // name → L.marker
+  let activeMarker = null;
+
+  // ── Hämta data ─────────────────────────────────────────────────────────────
+  async function loadClubs() {
+    try {
+      const res = await fetch("/api/clubs");
+      const data = await res.json();
+      allClubs = data.clubs;
+      document.getElementById("stats").textContent =
+        `${data.mapped} klubbar på kartan · ${data.total} totalt`;
+      renderList(allClubs);
+      renderMarkers(allClubs);
+    } catch (e) {
+      document.getElementById("stats").textContent = "Fel vid laddning av data.";
+      console.error(e);
+    }
+  }
+
+  // ── Karta: lägg ut markörer ────────────────────────────────────────────────
+  function renderMarkers(clubs) {
+    // Rensa gamla
+    Object.values(markers).forEach(m => map.removeLayer(m));
+    markers = {};
+
+    clubs.forEach(club => {
+      if (club.lat == null || club.lon == null) return;
+
+      const m = L.marker([club.lat, club.lon], { icon: boatIcon })
+        .addTo(map)
+        .on("click", () => showPanel(club, m));
+
+      markers[club.name] = m;
+    });
+  }
+
+  // ── Sidopanel: klubbinfo ───────────────────────────────────────────────────
+  function showPanel(club, marker) {
+    if (activeMarker) activeMarker.getElement()?.classList.remove("active");
+    activeMarker = marker;
+    marker.getElement()?.classList.add("active");
+
+    const content = document.getElementById("popup-content");
+    content.innerHTML = `
+      <h2>${esc(club.name)}</h2>
+      ${club.city    ? `<p class="meta">📍 ${esc(club.city)}</p>` : ""}
+      ${club.address ? `<p class="meta">🏠 ${esc(club.address)}</p>` : ""}
+      ${club.phone   ? `<p class="meta">📞 <a href="tel:${esc(club.phone)}">${esc(club.phone)}</a></p>` : ""}
+      ${club.email   ? `<p class="meta">✉️ <a href="mailto:${esc(club.email)}">${esc(club.email)}</a></p>` : ""}
+      ${club.url     ? `<p class="meta">🌐 <a href="${esc(club.url)}" target="_blank" rel="noopener">Besök hemsida</a></p>` : ""}
+      <p class="source">Källa: ${esc(club.source || "okänd")}</p>
+    `;
+    document.getElementById("popup-panel").classList.remove("hidden");
+    map.setView([club.lat, club.lon], Math.max(map.getZoom(), 11), { animate: true });
+  }
+
+  document.getElementById("popup-close").addEventListener("click", () => {
+    document.getElementById("popup-panel").classList.add("hidden");
+    if (activeMarker) activeMarker.getElement()?.classList.remove("active");
+    activeMarker = null;
+  });
+
+  // ── Sidolista ──────────────────────────────────────────────────────────────
+  function renderList(clubs) {
+    const ul = document.getElementById("club-list");
+    ul.innerHTML = "";
+    clubs.forEach(club => {
+      const li = document.createElement("li");
+      li.textContent = club.name;
+      if (club.city) {
+        const span = document.createElement("span");
+        span.textContent = club.city;
+        li.appendChild(span);
+      }
+      li.addEventListener("click", () => {
+        if (club.lat != null) {
+          const m = markers[club.name];
+          if (m) showPanel(club, m);
+        }
+      });
+      ul.appendChild(li);
+    });
+  }
+
+  // ── Sök ───────────────────────────────────────────────────────────────────
+  let searchTimer;
+  document.getElementById("search").addEventListener("input", e => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      const q = e.target.value.toLowerCase().trim();
+      const filtered = q
+        ? allClubs.filter(c =>
+            c.name?.toLowerCase().includes(q) ||
+            c.city?.toLowerCase().includes(q) ||
+            c.address?.toLowerCase().includes(q)
+          )
+        : allClubs;
+      renderList(filtered);
+      renderMarkers(filtered);
+    }, 200);
+  });
+
+  // ── Hjälpfunktion ──────────────────────────────────────────────────────────
+  function esc(str) {
+    return String(str ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  loadClubs();
+</script>
+</body>
+</html>

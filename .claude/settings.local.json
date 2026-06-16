@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\NiklasLindegren\\\\batklubb\\\\static\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\NiklasLindegren\\\\batklubb\\\\data\")"
+    ]
+  }
+}
