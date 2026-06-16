@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Båtklubbar i Stockholm</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,7 +24,7 @@
       --green:   #2e6b47;
     }
 
-    html, body { height: 100%; font-family: Georgia, 'Times New Roman', serif; background: var(--sand); color: var(--text); overflow: hidden; }
+    html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--sand); color: var(--text); overflow: hidden; }
 
     #app { display: flex; height: 100vh; }
 
@@ -66,7 +67,7 @@
       padding: 8px 10px 8px 32px;
       color: var(--sand);
       font-size: 13px;
-      font-family: Georgia, serif;
+      font-family: 'DM Sans', sans-serif;
       outline: none;
     }
     #search::placeholder { color: rgba(245,240,232,0.4); }
@@ -79,7 +80,7 @@
       padding: 3px 9px;
       border-radius: 3px;
       font-size: 11px;
-      font-family: Georgia, serif;
+      font-family: 'DM Sans', sans-serif;
       border: 1px solid rgba(200,169,110,0.25);
       background: transparent;
       color: rgba(245,240,232,0.5);
@@ -97,8 +98,8 @@
     }
     .stat-box { flex: 1; padding: 8px 10px; text-align: center; border-right: 1px solid rgba(200,169,110,0.15); }
     .stat-box:last-child { border-right: none; }
-    .stat-box .n { font-size: 19px; color: var(--rope); font-family: Georgia, serif; }
-    .stat-box .l { font-size: 10px; color: var(--muted); margin-top: 1px; font-family: Arial, sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
+    .stat-box .n { font-size: 19px; color: var(--rope); font-family: 'DM Sans', sans-serif; }
+    .stat-box .l { font-size: 10px; color: var(--muted); margin-top: 1px; font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
 
     /* Club list */
     #club-list {
@@ -127,11 +128,11 @@
 
     .list-anchor { font-size: 14px; flex-shrink: 0; }
     .club-info { flex: 1; min-width: 0; }
-    .club-info .name { font-size: 13px; color: var(--sand); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: Georgia, serif; }
-    .club-info .meta { font-size: 11px; color: var(--muted); margin-top: 1px; font-family: Arial, sans-serif; }
+    .club-info .name { font-size: 13px; color: var(--sand); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'DM Sans', sans-serif; }
+    .club-info .meta { font-size: 11px; color: var(--muted); margin-top: 1px; font-family: 'DM Sans', sans-serif; }
     .spots-pill {
       font-size: 11px;
-      font-family: Arial, sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: rgba(200,169,110,0.15);
       color: var(--rope);
       border: 1px solid rgba(200,169,110,0.25);
@@ -144,7 +145,7 @@
     #no-results { padding: 24px 16px; color: var(--muted); font-size: 13px; text-align: center; }
 
     /* ── Map ──────────────────────────────────────────── */
-    #map { flex: 1; z-index: 0; }
+    #map { flex: 1; z-index: 0; background: #e8e4dc; }
 
     /* ── Markers ──────────────────────────────────────── */
     .buoy {
@@ -190,7 +191,7 @@
       display: inline-block;
       margin-top: 5px;
       font-size: 10px;
-      font-family: Arial, sans-serif;
+      font-family: 'DM Sans', sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--rope);
@@ -204,7 +205,7 @@
       color: var(--sand); width: 22px; height: 22px;
       border-radius: 50%; cursor: pointer; font-size: 11px;
       display: flex; align-items: center; justify-content: center;
-      font-family: Arial, sans-serif;
+      font-family: 'DM Sans', sans-serif;
     }
     #panel-close:hover { background: rgba(255,255,255,0.2); }
 
@@ -214,8 +215,8 @@
       align-items: baseline;
       gap: 8px;
     }
-    .spots-block .big { font-size: 28px; color: var(--rope-dk); font-family: Georgia, serif; line-height: 1; }
-    .spots-block .lbl { font-size: 12px; color: var(--muted); font-family: Arial, sans-serif; }
+    .spots-block .big { font-size: 28px; color: var(--rope-dk); font-family: 'DM Sans', sans-serif; line-height: 1; }
+    .spots-block .lbl { font-size: 12px; color: var(--muted); font-family: 'DM Sans', sans-serif; }
 
     #panel-rows { padding: 10px 14px; }
     .info-row {
@@ -225,7 +226,7 @@
       padding: 6px 0;
       border-bottom: 1px solid rgba(200,169,110,0.2);
       font-size: 12px;
-      font-family: Arial, sans-serif;
+      font-family: 'DM Sans', sans-serif;
     }
     .info-row:last-child { border-bottom: none; }
     .info-row .lbl { color: var(--muted); min-width: 56px; flex-shrink: 0; font-size: 11px; }
@@ -242,7 +243,7 @@
       border-radius: 4px;
       padding: 8px 11px;
       z-index: 400;
-      font-family: Arial, sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       color: var(--text);
     }
@@ -332,10 +333,7 @@ const map = L.map('map', { center: [59.32, 18.06], zoom: 11 });
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a>',
-  maxZoom: 19, subdomains: 'abcd',
-}).addTo(map);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
-  attribution: '', maxZoom: 19, subdomains: 'abcd', pane: 'shadowPane',
+  maxZoom: 19, subdomains: 'abcd', opacity: 0.6,
 }).addTo(map);
 
 // ── State ────────────────────────────────────────────────────────────────
