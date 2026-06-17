@@ -211,19 +211,13 @@
     }
     #panel-close:hover { background: rgba(255,255,255,0.2); }
 
-    #spots-block-wrap {
+    .spots-block {
       position: absolute;
-      bottom: 68px; right: 16px;
-      z-index: 400;
-      background: rgba(245,240,232,0.92);
-      border-radius: 4px;
-      padding: 7px 12px 6px;
+      bottom: 10px; right: 10px;
       text-align: right;
-      pointer-events: none;
     }
-    .spots-block { display: block; }
-    .spots-block .big { font-size: 26px; color: var(--navy); font-family: 'DM Sans', sans-serif; line-height: 1; font-weight: 500; }
-    .spots-block .lbl { font-size: 10px; color: var(--muted); font-family: 'DM Sans', sans-serif; letter-spacing:.04em; text-transform:uppercase; margin-top: 2px; }
+    .spots-block .big { font-size: 28px; color: var(--rope); font-family: 'DM Sans', sans-serif; line-height: 1; font-weight: 400; }
+    .spots-block .lbl { font-size: 10px; color: rgba(245,240,232,0.55); font-family: 'DM Sans', sans-serif; letter-spacing:.04em; text-transform:uppercase; }
 
     .panel-desc {
       padding: 10px 14px 6px;
@@ -281,7 +275,7 @@
     /* Legend */
     .map-legend {
       position: absolute;
-      bottom: 28px; left: 14px;
+      bottom: 72px; right: 16px;
       background: rgba(245,240,232,0.92);
       border: none;
       border-radius: 4px;
@@ -368,21 +362,20 @@
       <button id="panel-close" aria-label="Stäng">✕</button>
       <h2 id="p-name"></h2>
       <span class="district-tag" id="p-district"></span>
+      <div id="spots-block-wrap"></div>
     </div>
     <div id="panel-rows"></div>
   </div>
 
   <div class="map-credit">Visar <strong id="badge-n">55</strong> båtklubbar</div>
 
-  <div id="spots-block-wrap"></div>
-  <button id="map-toggle">🛰 Satellit</button>
-
   <div class="map-legend">
     <div class="leg-title">Antal båtplatser</div>
-    <div class="leg-row"><div class="leg-dot" style="background:#1a6496"></div> Under 100</div>
-    <div class="leg-row"><div class="leg-dot" style="background:#b37800"></div> 100 – 199</div>
-    <div class="leg-row"><div class="leg-dot" style="background:#8b2020"></div> 200 eller fler</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#1e7fd4"></div> Under 100</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#e09000"></div> 100 – 199</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#d42020"></div> 200 eller fler</div>
   </div>
+  <button id="map-toggle">🛰 Satellit</button>
 
 </div>
 
