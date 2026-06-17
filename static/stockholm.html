@@ -526,12 +526,15 @@ function row(lbl, val) {
 }
 function fmt(n) { return n.toLocaleString('sv-SE'); }
 
-document.getElementById('panel-close').addEventListener('click', () => {
+function closePanel() {
   document.getElementById('info-panel').classList.remove('open');
   if (activeClub && markers[activeClub.name]) markers[activeClub.name].setIcon(makeIcon(activeClub, false));
   activeClub = null;
   document.querySelectorAll('#club-list li').forEach(li => li.classList.remove('active'));
-});
+}
+
+document.getElementById('panel-close').addEventListener('click', closePanel);
+map.on('click', closePanel);
 
 // ── Sort ─────────────────────────────────────────────────────────────────
 let sortOrder = null; // null | 'asc' | 'desc'
