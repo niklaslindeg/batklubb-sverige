@@ -10,17 +10,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:    #1a3a5c;
-      --navy-dk: #122840;
-      --water:   #2a6496;
+      --navy:    #0d2137;
+      --navy-dk: #081624;
+      --water:   #1a6eb5;
       --sand:    #f5f0e8;
-      --rope:    #c8a96e;
-      --rope-dk: #9e7d47;
+      --rope:    #f0b429;
+      --rope-dk: #d4930a;
       --wood:    #8b6914;
       --text:    #1e2d3d;
       --muted:   #6b7c8d;
       --white:   #ffffff;
-      --red:     #b33030;
+      --red:     #c02020;
       --green:   #2e6b47;
     }
 
@@ -149,19 +149,20 @@
 
     /* ── Markers ──────────────────────────────────────── */
     .buoy {
-      width: 26px; height: 26px;
+      width: 28px; height: 28px;
       border-radius: 50%;
       border: none;
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px;
+      font-size: 14px;
+      font-family: 'Segoe UI Symbol', 'Apple Symbols', Arial, sans-serif;
       color: #fff;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
       transition: transform .15s;
     }
-    .buoy-sm  { background: #1a6496; }
-    .buoy-md  { background: #b37800; }
-    .buoy-lg  { background: #8b2020; }
+    .buoy-sm  { background: #1e7fd4; }
+    .buoy-md  { background: #e09000; }
+    .buoy-lg  { background: #d42020; }
     .buoy:hover { transform: scale(1.25); }
     .buoy.selected { box-shadow: 0 0 0 3px rgba(255,255,255,0.7), 0 2px 10px rgba(0,0,0,0.5); transform: scale(1.2); }
 
@@ -212,10 +213,10 @@
 
     .spots-block {
       position: absolute;
-      bottom: 10px; right: 36px;
+      bottom: 10px; right: 10px;
       text-align: right;
     }
-    .spots-block .big { font-size: 26px; color: var(--rope); font-family: 'DM Sans', sans-serif; line-height: 1; }
+    .spots-block .big { font-size: 28px; color: var(--rope); font-family: 'DM Sans', sans-serif; line-height: 1; font-weight: 400; }
     .spots-block .lbl { font-size: 10px; color: rgba(245,240,232,0.55); font-family: 'DM Sans', sans-serif; letter-spacing:.04em; text-transform:uppercase; }
 
     .panel-desc {
@@ -425,7 +426,7 @@ function markerColor(spots) {
 
 function makeIcon(club, selected) {
   const cls = 'buoy ' + markerColor(club.spots || 0) + (selected ? ' selected' : '');
-  return L.divIcon({ className: '', html: `<div class="${cls}">⚓</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
+  return L.divIcon({ className: '', html: `<div class="${cls}">⚓︎</div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
 }
 
 // ── Rendera markörer ─────────────────────────────────────────────────────
