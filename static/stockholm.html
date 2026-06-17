@@ -235,6 +235,26 @@
       border-radius: 3px;
       padding: 3px 8px;
     }
+    .fees-section {
+      margin: 10px 0 4px;
+      border-top: 1px solid rgba(158,125,71,0.25);
+      padding-top: 8px;
+    }
+    .fees-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--rope);
+      text-transform: uppercase;
+      padding: 0 14px 4px;
+    }
+    .fees-note {
+      font-size: 11px;
+      color: var(--muted);
+      padding: 2px 14px 6px;
+      line-height: 1.5;
+    }
+    .fees-unknown .fees-note { font-style: italic; }
     #panel-rows { padding: 6px 14px; }
     .info-row {
       display: flex;
@@ -446,6 +466,18 @@ function openPanel(c) {
     const d = c.url.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'');
     rows += row('Webb', `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(d)} ↗</a>`);
   }
+  if (c.fees) {
+    rows += `<div class="fees-section"><div class="fees-title">⚓ Avgifter</div>`;
+    if (c.fees.entry)             rows += row('Insats', fmt(c.fees.entry) + ' kr');
+    if (c.fees.annual)            rows += row('Årsavgift', fmt(c.fees.annual) + ' kr');
+    if (c.fees.annual_no_spot)    rows += row('Årsavgift (utan plats)', fmt(c.fees.annual_no_spot) + ' kr');
+    if (c.fees.annual_with_spot)  rows += row('Årsavgift (med plats)', fmt(c.fees.annual_with_spot) + ' kr');
+    if (c.fees.spot)              rows += row('Båtplatsavgift', esc(c.fees.spot));
+    if (c.fees.note)              rows += `<div class="fees-note">${esc(c.fees.note)}</div>`;
+    rows += `</div>`;
+  } else {
+    rows += `<div class="fees-section fees-unknown"><div class="fees-title">⚓ Avgifter</div><div class="fees-note">Kontakta klubben för aktuella avgifter.</div></div>`;
+  }
   document.getElementById('panel-rows').innerHTML = rows;
   document.getElementById('info-panel').classList.add('open');
 }
@@ -453,6 +485,7 @@ function openPanel(c) {
 function row(lbl, val) {
   return `<div class="info-row"><span class="lbl">${lbl}</span><span class="val">${val}</span></div>`;
 }
+function fmt(n) { return n.toLocaleString('sv-SE'); }
 
 document.getElementById('panel-close').addEventListener('click', () => {
   document.getElementById('info-panel').classList.remove('open');
