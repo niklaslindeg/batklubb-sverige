@@ -339,20 +339,11 @@
       </div>
       <div class="filters" id="filters">
         <button class="chip active" data-d="all">Alla</button>
-        <button class="chip" data-d="Kungsholmen">Kungsholmen</button>
-        <button class="chip" data-d="Söder">Södermalm</button>
-        <button class="chip" data-d="Djurgården">Djurgården</button>
-        <button class="chip" data-d="Östermalm">Östermalm</button>
-        <button class="chip" data-d="Essingen">Essingen</button>
-        <button class="chip" data-d="Liljeholmen">Liljeholmen</button>
-        <button class="chip" data-d="Norra">Norra</button>
-        <button class="chip" data-d="Bromma">Bromma</button>
-        <button class="chip" data-d="Nacka">Nacka</button>
-        <button class="chip" data-d="Värmdö">Värmdö</button>
-        <button class="chip" data-d="Tyresö">Tyresö</button>
-        <button class="chip" data-d="Skärgård">Skärgård</button>
-        <button class="chip" data-d="Södra skärgård">Södra skärgård</button>
-        <button class="chip" data-d="Södertälje">Södertälje</button>
+        <button class="chip" data-d="Innerstan">Innerstan</button>
+        <button class="chip" data-d="Norrort">Norrort</button>
+        <button class="chip" data-d="Söderort">Söderort</button>
+        <button class="chip" data-d="Österort">Österort</button>
+        <button class="chip" data-d="Skärgården">Skärgården</button>
       </div>
     </div>
 
@@ -462,7 +453,7 @@ function renderList(clubs) {
         <div class="name">${esc(club.name)}</div>
         <div class="meta">${esc(club.district || '')}${club.address ? ' · ' + esc(club.address.split(',')[0]) : ''}</div>
       </div>
-      ${club.spots ? `<span class="spots-pill">${club.spots} pl.</span>` : ''}`;
+      <span class="spots-pill">${club.spots ? club.spots + ' pl.' : '–'}</span>`;
     li.addEventListener('click', () => select(club));
     ul.appendChild(li);
   });
