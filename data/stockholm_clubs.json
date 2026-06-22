@@ -159,8 +159,8 @@
     },
     {
         "name":  "Essinge Båtklubb",
-        "lat":  59.3261652,
-        "lon":  18.0034392,
+        "lat":  59.32585,
+        "lon":  17.99984,
         "district":  "Innerstan",
         "address":  "Dagnyvägen 4, 112 62 Stockholm",
         "spots":  57,
@@ -255,8 +255,8 @@
     },
     {
         "name":  "Kristinebergs Båtklubb KBK",
-        "lat":  59.3330745,
-        "lon":  17.9972148,
+        "lat":  59.33225,
+        "lon":  17.99672,
         "district":  "Innerstan",
         "address":  "Kungsholms Strandstig 504, 112 52 Stockholm",
         "spots":  80,
@@ -483,10 +483,10 @@
     },
     {
         "name":  "Segelsällskapet Vega",
-        "lat":  59.3356792,
-        "lon":  18.0399599,
+        "lat":  59.3732,
+        "lon":  18.0562,
         "district":  "Innerstan",
-        "address":  "Kungsholms Strand 105, Stockholm",
+        "address":  "Ekhagen, Brunnsviken, Stockholm",
         "spots":  90,
         "url":  "https://www.ssvega.se",
         "desc":  "Aktiv segelsällskap på Kungsholmen med kappsegling i Mälaren och Saltsjön."
@@ -782,8 +782,8 @@
     },
     {
         "name":  "Segelsällskapet Gäddviken",
-        "lat":  59.304,
-        "lon":  18.167,
+        "lat":  59.3114,
+        "lon":  18.1258,
         "district":  "Österort",
         "address":  "Kvarnholmsvägen 42, 131 52 Nacka",
         "spots":  100,
@@ -803,8 +803,8 @@
     },
     {
         "name":  "Hästholmens Båtsällskap",
-        "lat":  59.3169,
-        "lon":  18.1326,
+        "lat":  59.31586,
+        "lon":  18.1314,
         "district":  "Österort",
         "address":  "Mjölnarvägen 3, 131 74 Nacka",
         "spots":  null,
