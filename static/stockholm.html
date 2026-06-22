@@ -203,6 +203,7 @@
     .buoy-sm  { background: #1e7fd4; }
     .buoy-md  { background: #e09000; }
     .buoy-lg  { background: #d42020; }
+    .buoy-na  { background: #8a9aaa; }
     .buoy:hover { transform: scale(1.25); }
     .buoy.selected { box-shadow: 0 0 0 3px rgba(255,255,255,0.7), 0 2px 10px rgba(0,0,0,0.5); transform: scale(1.2); }
 
@@ -224,7 +225,7 @@
 
     .panel-head {
       background: var(--navy);
-      padding: 12px 36px 12px 14px;
+      padding: 12px 36px 46px 14px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       position: relative;
     }
@@ -253,113 +254,110 @@
 
     .spots-block {
       position: absolute;
-      bottom: 10px; right: 10px;
-      text-align: right;
+      bottom: 10px; left: 14px;
+      text-align: left;
     }
-    .spots-block .big { font-size: 28px; color: var(--sand); font-family: 'DM Sans', sans-serif; line-height: 1; font-weight: 400; }
+    .spots-block .big { font-size: 24px; color: var(--sand); font-family: 'DM Sans', sans-serif; line-height: 1; font-weight: 400; }
+    .spots-block .big.na { font-size: 16px; color: rgba(245,240,232,0.45); }
     .spots-block .lbl { font-size: 10px; color: rgba(245,240,232,0.55); font-family: 'DM Sans', sans-serif; letter-spacing:.04em; text-transform:uppercase; }
 
+    /* ── Panel body — consistent 16px gutter everywhere ── */
+    #panel-rows { padding: 0; }
+
     .panel-desc {
-      padding: 10px 14px 6px;
+      padding: 14px 16px 12px;
       font-size: 12px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
       border-bottom: 1px solid rgba(0,0,0,0.07);
     }
     .waitlist-badge {
-      margin: 6px 14px;
       display: inline-block;
+      margin: 12px 16px 0;
       font-size: 11px;
       background: #fff3cd;
       color: #856404;
-      border: none;
       border-radius: 3px;
-      padding: 3px 8px;
+      padding: 3px 10px;
     }
-    .fees-section {
-      margin: 10px 0 4px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      padding-top: 8px;
+
+    /* Info rows */
+    .info-rows-group { padding: 8px 16px 4px; }
+    .info-row {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-size: 12px;
+      font-family: 'DM Sans', sans-serif;
     }
-    .fees-title {
-      font-size: 11px;
+    .info-row:last-child { border-bottom: none; }
+    .info-row .lbl { color: var(--muted); min-width: 62px; flex-shrink: 0; font-size: 11px; }
+    .info-row .val { color: var(--text); }
+    .info-row a { color: var(--water); text-decoration: none; }
+    .info-row a:hover { text-decoration: underline; }
+
+    /* Section blocks (fees + boats) */
+    .fees-section,
+    .boats-section {
+      margin: 0;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      padding: 14px 16px 10px;
+    }
+    .fees-title,
+    .boats-title {
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: .06em;
+      letter-spacing: .07em;
       color: var(--teal);
       text-transform: uppercase;
-      padding: 0 14px 4px;
+      margin-bottom: 10px;
     }
     .fees-note {
       font-size: 11px;
       color: var(--muted);
-      padding: 2px 14px 6px;
-      line-height: 1.5;
+      line-height: 1.55;
+      margin-top: 8px;
     }
     .fees-unknown .fees-note { font-style: normal; }
-    .boats-section {
-      margin: 10px 0 4px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      padding-top: 8px;
-    }
-    .boats-title {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .06em;
-      color: var(--teal);
-      text-transform: uppercase;
-      padding: 0 14px 6px;
-    }
+
+    /* Boat types + specs */
     .boats-types {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
-      padding: 0 14px 8px;
+      gap: 6px;
+      margin-bottom: 10px;
     }
     .boat-type-pill {
       background: var(--teal-lt);
       color: var(--teal);
       border-radius: 20px;
-      padding: 2px 9px;
+      padding: 3px 10px;
       font-size: 11px;
       font-weight: 500;
-      text-transform: capitalize;
     }
     .boats-specs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px 10px;
-      padding: 0 14px 6px;
+      gap: 6px;
+      margin-bottom: 8px;
     }
     .spec-item {
       display: flex;
       flex-direction: column;
       background: var(--teal-lt);
-      border-radius: 4px;
-      padding: 5px 8px;
+      border-radius: 5px;
+      padding: 6px 9px;
     }
-    .spec-lbl { font-size: 9px; color: var(--teal); text-transform: uppercase; letter-spacing: .05em; font-weight: 500; }
+    .spec-lbl { font-size: 9px; color: var(--teal); text-transform: uppercase; letter-spacing: .05em; font-weight: 500; margin-bottom: 2px; }
     .spec-val { font-size: 13px; font-weight: 600; color: var(--navy); }
     .boats-note {
       font-size: 11px;
       color: var(--muted);
-      padding: 2px 14px 6px;
-      line-height: 1.5;
+      line-height: 1.55;
+      margin-top: 6px;
     }
-    #panel-rows { padding: 6px 14px; }
-    .info-row {
-      display: flex;
-      gap: 8px;
-      align-items: baseline;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      font-size: 12px;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .info-row:last-child { border-bottom: none; }
-    .info-row .lbl { color: var(--muted); min-width: 56px; flex-shrink: 0; font-size: 11px; }
-    .info-row .val { color: var(--text); }
-    .info-row a { color: var(--water); text-decoration: none; }
-    .info-row a:hover { text-decoration: underline; }
 
     /* Legend */
     .map-legend {
@@ -508,13 +506,14 @@ let activeClub = null;
 let activeDistrict = 'all';
 
 function markerColor(spots) {
+  if (spots === null || spots === undefined) return 'buoy-na';
   if (spots >= 200) return 'buoy-lg';
   if (spots >= 100) return 'buoy-md';
   return 'buoy-sm';
 }
 
 function makeIcon(club, selected) {
-  const cls = 'buoy ' + markerColor(club.spots || 0) + (selected ? ' selected' : '');
+  const cls = 'buoy ' + markerColor(club.spots) + (selected ? ' selected' : '');
   const svg = `<svg width="14" height="16" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="5" r="3.5" stroke="white" stroke-width="2.5" fill="none"/><line x1="14" y1="8.5" x2="14" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="13" x2="22" y2="13" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M6 28 Q2 24 4 20" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M22 28 Q26 24 24 20" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M3 28 Q14 32 25 28" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>`;
   return L.divIcon({ className: '', html: `<div class="${cls}" style="display:flex;align-items:center;justify-content:center;">${svg}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
 }
@@ -578,51 +577,64 @@ function openPanel(c) {
   document.getElementById('p-district').textContent = c.district || '';
 
   const sw = document.getElementById('spots-block-wrap');
-  sw.innerHTML = c.spots ? `<div class="spots-block"><div class="big">${c.spots}</div><div class="lbl">båtplatser</div></div>` : '';
+  sw.innerHTML = c.spots
+    ? `<div class="spots-block"><div class="big">${c.spots}</div><div class="lbl">båtplatser</div></div>`
+    : `<div class="spots-block"><div class="big na">N/A</div><div class="lbl">båtplatser okänt</div></div>`;
 
   let rows = '';
+
+  // Description
   if (c.desc) rows += `<div class="panel-desc">${esc(c.desc)}</div>`;
   if (c.waitlist) rows += `<div class="waitlist-badge">⏳ Lång kötid</div>`;
-  if (c.address) rows += row('Adress', esc(c.address));
-  if (c.phone)   rows += row('Telefon', `<a href="tel:${esc(c.phone)}">${esc(c.phone)}</a>`);
-  if (c.founded) rows += row('Grundad', c.founded);
+
+  // Contact / info rows
+  let infoRows = '';
+  if (c.address) infoRows += row('Adress', esc(c.address));
+  if (c.phone)   infoRows += row('Telefon', `<a href="tel:${esc(c.phone)}">${esc(c.phone)}</a>`);
+  if (c.founded) infoRows += row('Grundad', c.founded);
+  if (c.email)   infoRows += row('E-post', `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`);
   if (c.url) {
     const d = c.url.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'');
-    rows += row('Webb', `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(d)} ↗</a>`);
+    infoRows += row('Webb', `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(d)} ↗</a>`);
   }
+  if (infoRows) rows += `<div class="info-rows-group">${infoRows}</div>`;
+
+  // Fees
   if (c.fees) {
-    rows += `<div class="fees-section"><div class="fees-title">💰 Avgifter</div>`;
-    if (c.fees.entry)             rows += row('Insats', fmt(c.fees.entry) + ' kr');
-    if (c.fees.annual)            rows += row('Årsavgift', fmt(c.fees.annual) + ' kr');
-    if (c.fees.annual_no_spot)    rows += row('Årsavgift (utan plats)', fmt(c.fees.annual_no_spot) + ' kr');
-    if (c.fees.annual_with_spot)  rows += row('Årsavgift (med plats)', fmt(c.fees.annual_with_spot) + ' kr');
-    if (c.fees.spot)              rows += row('Båtplatsavgift', esc(c.fees.spot));
-    if (c.fees.note)              rows += `<div class="fees-note">${esc(c.fees.note)}</div>`;
-    rows += `</div>`;
+    let feeRows = '';
+    if (c.fees.entry)            feeRows += row('Insats', fmt(c.fees.entry) + ' kr');
+    if (c.fees.annual)           feeRows += row('Årsavgift', fmt(c.fees.annual) + ' kr');
+    if (c.fees.annual_no_spot)   feeRows += row('Utan plats', fmt(c.fees.annual_no_spot) + ' kr');
+    if (c.fees.annual_with_spot) feeRows += row('Med plats', fmt(c.fees.annual_with_spot) + ' kr');
+    if (c.fees.spot)             feeRows += row('Platsavgift', esc(c.fees.spot));
+    rows += `<div class="fees-section">
+      <div class="fees-title">💰 Avgifter</div>
+      ${feeRows ? `<div class="info-rows-group" style="padding:0">${feeRows}</div>` : ''}
+      ${c.fees.note ? `<div class="fees-note">${esc(c.fees.note)}</div>` : ''}
+    </div>`;
   } else {
     let contact = '';
-    if (c.email) contact += `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`;
-    else if (c.phone) contact += `<a href="tel:${esc(c.phone)}">${esc(c.phone)}</a>`;
-    else if (c.url) { const d = c.url.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''); contact += `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(d)} ↗</a>`; }
+    if (c.email) contact = `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`;
+    else if (c.phone) contact = `<a href="tel:${esc(c.phone)}">${esc(c.phone)}</a>`;
+    else if (c.url) { const d = c.url.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''); contact = `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(d)} ↗</a>`; }
     const contactHtml = contact ? `Kontakta klubben för aktuella avgifter: ${contact}` : 'Kontakta klubben för aktuella avgifter.';
     rows += `<div class="fees-section fees-unknown"><div class="fees-title">💰 Avgifter</div><div class="fees-note">${contactHtml}</div></div>`;
   }
+
+  // Boats
   if (c.boats) {
-    rows += `<div class="boats-section"><div class="boats-title">⛵ Båtar som får plats</div>`;
-    if (c.boats.types && c.boats.types.length) {
-      const typeLabels = { motor: 'Motorbåt', segel: 'Segelbåt', roddbåt: 'Roddbåt', kanot: 'Kanot' };
-      rows += `<div class="boats-types">` + c.boats.types.map(t => `<span class="boat-type-pill">${typeLabels[t] || t}</span>`).join('') + `</div>`;
-    }
+    const typeLabels = { motor: 'Motorbåt', segel: 'Segelbåt', roddbåt: 'Roddbåt', kanot: 'Kanot' };
     const specs = [];
     if (c.boats.max_length) specs.push({ lbl: 'Max längd', val: c.boats.max_length + ' m' });
     if (c.boats.max_beam)   specs.push({ lbl: 'Max bredd', val: c.boats.max_beam + ' m' });
-    if (c.boats.max_draft)  specs.push({ lbl: 'Max djup', val: c.boats.max_draft + ' m' });
-    if (c.boats.max_weight) specs.push({ lbl: 'Max vikt', val: (c.boats.max_weight >= 1000 ? (c.boats.max_weight/1000).toLocaleString('sv-SE') + ' ton' : c.boats.max_weight + ' kg') });
-    if (specs.length) {
-      rows += `<div class="boats-specs">` + specs.map(s => `<div class="spec-item"><span class="spec-lbl">${s.lbl}</span><span class="spec-val">${s.val}</span></div>`).join('') + `</div>`;
-    }
-    if (c.boats.note) rows += `<div class="boats-note">${esc(c.boats.note)}</div>`;
-    rows += `</div>`;
+    if (c.boats.max_draft)  specs.push({ lbl: 'Max djup',  val: c.boats.max_draft + ' m' });
+    if (c.boats.max_weight) specs.push({ lbl: 'Max vikt',  val: c.boats.max_weight >= 1000 ? (c.boats.max_weight/1000).toLocaleString('sv-SE') + ' ton' : c.boats.max_weight + ' kg' });
+    rows += `<div class="boats-section">
+      <div class="boats-title">⛵ Båtar som får plats</div>
+      ${c.boats.types?.length ? `<div class="boats-types">${c.boats.types.map(t => `<span class="boat-type-pill">${typeLabels[t]||t}</span>`).join('')}</div>` : ''}
+      ${specs.length ? `<div class="boats-specs">${specs.map(s => `<div class="spec-item"><span class="spec-lbl">${s.lbl}</span><span class="spec-val">${s.val}</span></div>`).join('')}</div>` : ''}
+      ${c.boats.note ? `<div class="boats-note">${esc(c.boats.note)}</div>` : ''}
+    </div>`;
   }
 
   document.getElementById('panel-rows').innerHTML = rows;
