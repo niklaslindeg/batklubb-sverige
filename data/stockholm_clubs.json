@@ -124,7 +124,18 @@
         "url":  "https://www.ekensbergsbs.com",
         "founded":  1920,
         "desc":  "Ideell förening som hyr mark av Stockholms stad. Lång kötid (\u003e5 år). Slip och vagnar för båtar upp till 4 500 kg. Aktiv gemenskap med dugnader.",
-        "waitlist":  true
+        "waitlist":  true,
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  null,
+                      "max_draft":  1.7,
+                      "max_weight":  4500,
+                      "note":  "Slip och vagnar hanterar max 4 500 kg och djupgående 1,7 m."
+                  }
     },
     {
         "name":  "Ekhagens Båtklubb",
@@ -257,7 +268,17 @@
         "fees":  {
                      "spot":  "6 000–8 000 kr/år beroende på båtstorlek",
                      "note":  "Kötid \u003e5 år. Kontakta klubben för aktuell avgiftslista."
-                 }
+                 },
+        "boats":  {
+                      "types":  [
+                                    "motor"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  null,
+                      "max_draft":  null,
+                      "max_weight":  2000,
+                      "note":  "Motorbåtar; båtar över 2 ton kräver styrelsens godkännande. Förarintyg krävs inom ett år från tilldelad plats."
+                  }
     },
     {
         "name":  "Kungliga Motorbåt Klubben",
@@ -301,7 +322,18 @@
         "spots":  80,
         "email":  "hello@lbk1.se",
         "url":  "https://www.lbk1.se",
-        "desc":  "Centralt belägen vid Hornstull. Ca 80 båtplatser, vinterförvaring på land. Aktiv förening med dugnader och sociala evenemang."
+        "desc":  "Centralt belägen vid Hornstull. Ca 80 båtplatser, vinterförvaring på land. Aktiv förening med dugnader och sociala evenemang.",
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  null,
+                      "max_draft":  null,
+                      "max_weight":  3000,
+                      "note":  "Gästbåtar med totalvikt över 3 000 kg kan för närvarande ej tas emot."
+                  }
     },
     {
         "name":  "Lux Båtklubb",
@@ -407,7 +439,18 @@
                      "annual":  1900,
                      "spot":  "750 kr/bryggmeter/år",
                      "note":  "Deposition 1 000 kr + nyckeldeposition 400 kr (återbetalas). Kranservice 850 kr."
-                 }
+                 },
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  12,
+                      "max_beam":  null,
+                      "max_draft":  1.55,
+                      "max_weight":  10000,
+                      "note":  "Allmänna platser max bredd 2,40 m och längd 10 m."
+                  }
     },
     {
         "name":  "Rörstrands Båtklubb",
@@ -476,7 +519,17 @@
         "email":  "info@ssk-sthlm.nu",
         "url":  "https://www.ssk-sthlm.nu",
         "founded":  1901,
-        "desc":  "Grundad 1901. Fredhällshamnen med ~130 platser + uthamn i Löknäsviken (58 platser). Tar enbart in seglare som medlemmar. Klubbholmar: V:a Delsholmen (Saltsjön) och Röskär (Mälaren). Aktiv kappsegling."
+        "desc":  "Grundad 1901. Fredhällshamnen med ~130 platser + uthamn i Löknäsviken (58 platser). Tar enbart in seglare som medlemmar. Klubbholmar: V:a Delsholmen (Saltsjön) och Röskär (Mälaren). Aktiv kappsegling.",
+        "boats":  {
+                      "types":  [
+                                    "segel"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  3,
+                      "max_draft":  1.7,
+                      "max_weight":  6000,
+                      "note":  "Endast seglare antas som medlemmar."
+                  }
     },
     {
         "name":  "Stockholms Segelsällskap",
@@ -518,7 +571,18 @@
         "address":  "Maskinistgatan 17, Stockholm",
         "spots":  30,
         "url":  "https://www.skeppsmyran.se",
-        "desc":  "Nischklubb för träbåtsentusiaster. Fokuserar på vård och segling av klassiska träbåtar."
+        "desc":  "Nischklubb för träbåtsentusiaster. Fokuserar på vård och segling av klassiska träbåtar.",
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  null,
+                      "max_draft":  null,
+                      "max_weight":  null,
+                      "note":  "Endast träbåtar accepteras. Sällskapet driver renoveringsvarv för historiska trä-, motor- och ångbåtar."
+                  }
     },
     {
         "name":  "Västermalms Båtklubb",
@@ -639,7 +703,7 @@
         "lon":  17.8942,
         "district":  "Norrort",
         "address":  "Blackebergsvägen 57, 168 52 Bromma",
-        "spots":  null,
+        "spots":  200,
         "phone":  "08-545 859 60",
         "url":  "https://www.angbybatklubb.se",
         "desc":  "Ideell båtklubb vid Mälarstranden i Ängbybadet, Bromma. Bra utgångsläge för segling på Mälaren."
@@ -650,7 +714,7 @@
         "lon":  17.9801,
         "district":  "Norrort",
         "address":  "Lilla Båtvarvsgränd, 167 33 Bromma",
-        "spots":  null,
+        "spots":  172,
         "phone":  "08-269 730",
         "email":  "kontakt@trass.se",
         "url":  "https://www.trass.se",
@@ -679,7 +743,20 @@
         "url":  "https://www.malarhojdensbatklubb.se",
         "founded":  1925,
         "desc":  "Grundad 1925 med ~700 medlemmar och 160 förtöjningsplatser. Belägen vid Mälaren i Hägersten. Lång kötid.",
-        "waitlist":  true
+        "waitlist":  true,
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel",
+                                    "roddbåt",
+                                    "kanot"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  3.75,
+                      "max_draft":  null,
+                      "max_weight":  10000,
+                      "note":  "Alla båttyper välkomna — från stora båtar till jollar och kanoter. Max vikt på land 10 ton."
+                  }
     },
     {
         "name":  "Svindersviks Båtklubb",
@@ -690,7 +767,18 @@
         "spots":  100,
         "url":  "https://www.svindersviksbatklubb.se",
         "founded":  1962,
-        "desc":  "Segelsällskap grundat 1962 med ~130 medlemmar, ~100 sommarplatser och 80 vinterplatser i Svindersviken."
+        "desc":  "Segelsällskap grundat 1962 med ~130 medlemmar, ~100 sommarplatser och 80 vinterplatser i Svindersviken.",
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  12,
+                      "max_beam":  3.5,
+                      "max_draft":  1.8,
+                      "max_weight":  5000,
+                      "note":  "Accepterar ej båtar längre än 12 m, bredare än 3,5 m, djupare än 1,80 m eller tyngre än 5 ton."
+                  }
     },
     {
         "name":  "Segelsällskapet Gäddviken",
@@ -701,7 +789,17 @@
         "spots":  100,
         "url":  "https://www.gaddviken.se",
         "founded":  1911,
-        "desc":  "Traditionellt segelsällskap grundat 1911 med ~250 medlemmar och 100 segelplatser, framförallt träbåtar."
+        "desc":  "Traditionellt segelsällskap grundat 1911 med ~250 medlemmar och 100 segelplatser, framförallt träbåtar.",
+        "boats":  {
+                      "types":  [
+                                    "segel"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  null,
+                      "max_draft":  null,
+                      "max_weight":  null,
+                      "note":  "Segelbåtar, framför allt traditionella träbåtar — ca 50% av klubbens båtar är träbåtar."
+                  }
     },
     {
         "name":  "Hästholmens Båtsällskap",
@@ -720,7 +818,7 @@
         "lon":  18.213,
         "district":  "Österort",
         "address":  "Ryssviksvägen 4, 131 36 Nacka",
-        "spots":  null,
+        "spots":  135,
         "url":  "https://www.nackabk.se",
         "founded":  1931,
         "desc":  "Ideell förening grundad 1931 med hemhamn vid Svindersviken. Välkommen till båtliv i Nacka."
@@ -744,7 +842,19 @@
         "spots":  100,
         "url":  "https://www.boobk.nu",
         "founded":  1939,
-        "desc":  "Ideell klubb grundad 1939 med ~100 platser i Saltsjö-Boo. Unik traktor-trailer för sjösättning av båtar."
+        "desc":  "Ideell klubb grundad 1939 med ~100 platser i Saltsjö-Boo. Unik traktor-trailer för sjösättning av båtar.",
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel",
+                                    "roddbåt"
+                                ],
+                      "max_length":  12,
+                      "max_beam":  3,
+                      "max_draft":  1.65,
+                      "max_weight":  5000,
+                      "note":  "Sliprampen klarar max 4 ton och djupgående 1,70 m. Nacka-bor prioriteras."
+                  }
     },
     {
         "name":  "Skurusundets Båtsällskap",
@@ -780,7 +890,18 @@
         "email":  "solsidans.bk@gmail.com",
         "url":  "https://www.solsidansbatklubb.se",
         "founded":  1940,
-        "desc":  "Ideell förening med ~230 platser i Saltsjöbaden, verksam sedan 1940-talet."
+        "desc":  "Ideell förening med ~230 platser i Saltsjöbaden, verksam sedan 1940-talet.",
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  null,
+                      "max_draft":  null,
+                      "max_weight":  10000,
+                      "note":  "Övre varvet (segelbåtar) max 10 ton, nedre varvet (motorbåtar) max 4 ton."
+                  }
     },
     {
         "name":  "Saltsjöbadens Båtklubb",
@@ -790,7 +911,18 @@
         "address":  "Pålnäsvägen, 133 33 Saltsjöbaden",
         "spots":  800,
         "url":  "https://www.saltsjobadensbatklubb.se",
-        "desc":  "En av Stockholmsregionens största båtklubbar med ~800 platser. Båtplats förutsätter bosättning i Nacka kommun."
+        "desc":  "En av Stockholmsregionens största båtklubbar med ~800 platser. Båtplats förutsätter bosättning i Nacka kommun.",
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  12,
+                      "max_beam":  4,
+                      "max_draft":  null,
+                      "max_weight":  15000,
+                      "note":  "Kräver boende i Nacka kommun. Kommersiella fartyg ej tillåtna."
+                  }
     },
     {
         "name":  "Gustavsbergs Båtklubb",
@@ -798,7 +930,7 @@
         "lon":  18.402,
         "district":  "Österort",
         "address":  "Poseidons väg, Mölnvikshamnen, 134 23 Gustavsberg",
-        "spots":  null,
+        "spots":  250,
         "email":  "info@gustavsbergsbatklubb.se",
         "url":  "https://www.gustavsbergsbatklubb.se",
         "desc":  "Båtklubb med flera hamnlägen i Värmdö och god tillgång till Stockholms skärgård."
@@ -847,7 +979,18 @@
         "spots":  600,
         "url":  "https://www.tyresobatklubb.se",
         "founded":  1963,
-        "desc":  "Ideell förening grundad 1963 med 600+ platser. Stadens huvudbåtklubb med aktiv verksamhet."
+        "desc":  "Ideell förening grundad 1963 med 600+ platser. Stadens huvudbåtklubb med aktiv verksamhet.",
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  null,
+                      "max_beam":  3.8,
+                      "max_draft":  null,
+                      "max_weight":  8000,
+                      "note":  "Upptagningssystemet hanterar max 8 ton och bredd 3,8 m. Vaggor max 2,2 m breda."
+                  }
     },
     {
         "name":  "Tyresö Strands Båtklubb",
@@ -883,6 +1026,17 @@
         "url":  "https://www.tralhavetsbk.se",
         "founded":  1977,
         "desc":  "En av Sveriges största båtklubbar med ~1 800 medlemmar och plats för 600+ båtar. Anläggningar på flera skärgårdsöar.",
-        "waitlist":  true
+        "waitlist":  true,
+        "boats":  {
+                      "types":  [
+                                    "motor",
+                                    "segel"
+                                ],
+                      "max_length":  13,
+                      "max_beam":  4,
+                      "max_draft":  2,
+                      "max_weight":  10000,
+                      "note":  "Max LOA 13 m, bredd 4 m, djupgående 2,0 m, vikt 10 ton. Dispens möjlig via skriftlig ansökan."
+                  }
     }
 ]
