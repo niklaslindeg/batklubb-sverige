@@ -209,6 +209,23 @@
     .buoy:hover { transform: scale(1.25); }
     .buoy.selected { box-shadow: 0 0 0 3px rgba(255,255,255,0.7), 0 2px 10px rgba(0,0,0,0.5); transform: scale(1.2); }
 
+    /* ── Markör-tooltip ──────────────────────────────── */
+    .leaflet-tooltip.club-tip {
+      background: rgba(10,42,40,0.93);
+      border: 1px solid rgba(232,223,200,0.35);
+      border-radius: 5px;
+      color: #e8dfc8;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 12px;
+      padding: 6px 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .leaflet-tooltip.club-tip::before { border-top-color: rgba(10,42,40,0.93); }
+    .club-tip-name { font-weight: 600; font-size: 13px; color: #fff; }
+    .club-tip-addr { opacity: 0.75; margin-top: 2px; }
+
     /* ── Info panel ───────────────────────────────────── */
     #info-panel {
       position: absolute;
@@ -1616,6 +1633,8 @@ function renderMarkers(clubs) {
   });
   clubs.forEach(club => {
     const m = L.marker([club.lat, club.lon], { icon: makeIcon(club, false) });
+    const tipHtml = `<div class="club-tip-name">${esc(club.name)}</div>${club.address ? `<div class="club-tip-addr">${esc(club.address)}</div>` : ''}`;
+    m.bindTooltip(tipHtml, { className: 'club-tip', direction: 'top', offset: [0, -16] });
     m.on('click', () => select(club));
     markers[club.name] = m;
     clusterGroup.addLayer(m);
