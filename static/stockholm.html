@@ -363,18 +363,20 @@
     .map-legend {
       position: absolute;
       bottom: 72px; right: 16px;
-      background: rgba(245,240,232,0.92);
-      border: none;
-      border-radius: 4px;
-      padding: 8px 11px;
+      background: rgba(10, 42, 40, 0.92);
+      border: 1px solid rgba(232,223,200,0.1);
+      border-radius: 6px;
+      padding: 10px 13px;
       z-index: 400;
       font-family: 'DM Sans', sans-serif;
       font-size: 11px;
-      color: var(--text);
+      color: rgba(232,223,200,0.8);
+      backdrop-filter: blur(4px);
     }
-    .map-legend .leg-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 6px; }
-    .leg-row { display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
-    .leg-dot { width: 11px; height: 11px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); flex-shrink: 0; }
+    .map-legend .leg-title { font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(232,223,200,0.45); margin-bottom: 8px; }
+    .leg-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+    .leg-row:last-child { margin-bottom: 0; }
+    .leg-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); flex-shrink: 0; }
 
     .map-credit { display: none; }
 
@@ -382,18 +384,19 @@
       position: absolute;
       bottom: 28px; right: 16px;
       z-index: 400;
-      background: rgba(245,240,232,0.92);
-      border: none;
-      border-radius: 4px;
-      padding: 6px 11px;
+      background: rgba(10, 42, 40, 0.92);
+      border: 1px solid rgba(232,223,200,0.1);
+      border-radius: 6px;
+      padding: 7px 13px;
       font-family: 'DM Sans', sans-serif;
       font-size: 11px;
-      color: var(--text);
+      color: rgba(232,223,200,0.8);
       cursor: pointer;
       display: flex; align-items: center; gap: 6px;
-      transition: background .15s;
+      transition: background .15s, border-color .15s;
+      backdrop-filter: blur(4px);
     }
-    #map-toggle:hover { background: rgba(232,223,200,0.2); }
+    #map-toggle:hover { background: rgba(14, 53, 48, 0.97); border-color: rgba(232,223,200,0.25); color: var(--rope); }
 
     /* Leaflet overrides */
     .leaflet-control-zoom a { background: var(--navy) !important; color: var(--sand) !important; border-color: transparent !important; font-family: Georgia, serif !important; }
@@ -462,6 +465,7 @@
     <div class="leg-row"><div class="leg-dot" style="background:#1e7fd4"></div> Under 100</div>
     <div class="leg-row"><div class="leg-dot" style="background:#e09000"></div> 100 – 199</div>
     <div class="leg-row"><div class="leg-dot" style="background:#d42020"></div> 200 eller fler</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#8a9aaa"></div> Okänt</div>
   </div>
   <button id="map-toggle">🛰 Satellit</button>
 
