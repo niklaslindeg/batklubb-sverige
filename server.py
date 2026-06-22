@@ -83,5 +83,5 @@ if __name__ == "__main__":
     if not DATA_FILE.exists():
         print("OBS: data/clubs.json saknas. Kör 'python scraper.py' först.")
         print("Startar ändå med tom datamängd...\n")
-    print("Server startar på http://localhost:5000")
-    app.run(debug=True, port=5000)
+    print("Server startar på http://localhost:5001")
+    app.run(debug=True, port=5001)
