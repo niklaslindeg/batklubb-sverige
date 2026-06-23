@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Båtklubbar i Stockholm</title>
+  <title>Kartan – Minkajplats.se</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
@@ -202,6 +202,19 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.5);
       transition: transform .15s;
     }
+    /* ── Sidebar logo ─────────────────────────────────── */
+    .sidebar-logo-link {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; padding: 2px 0;
+    }
+    .sidebar-logo-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+    .sidebar-logo-text { display: flex; flex-direction: column; gap: 1px; }
+    .sidebar-brand {
+      font-size: 15px; font-weight: 700; color: var(--rope); letter-spacing: -0.3px; line-height: 1;
+    }
+    .sidebar-brand em { font-style: normal; opacity: 0.7; }
+    .sidebar-sub { font-size: 10px; color: rgba(232,223,200,0.5); font-weight: 400; letter-spacing: 0.3px; }
+
     .buoy-sm  { background: #1e7fd4; }
     .buoy-md  { background: #e09000; }
     .buoy-lg  { background: #d42020; }
@@ -455,8 +468,13 @@
   <aside id="sidebar">
     <div id="sidebar-header">
       <div class="site-title">
-        <div class="anchor"><svg width="26" height="30" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="5" r="3.5" stroke="#e8dfc8" stroke-width="2.5" fill="none"/><line x1="14" y1="8.5" x2="14" y2="28" stroke="#e8dfc8" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="13" x2="22" y2="13" stroke="#e8dfc8" stroke-width="2.5" stroke-linecap="round"/><path d="M6 28 Q2 24 4 20" stroke="#e8dfc8" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M22 28 Q26 24 24 20" stroke="#e8dfc8" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M3 28 Q14 32 25 28" stroke="#e8dfc8" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg></div>
-        <h1><strong>Båtklubbar i Stockholm</strong></h1>
+        <a href="/" class="sidebar-logo-link">
+          <img src="/static/logo.svg" alt="Minkajplats" class="sidebar-logo-img" />
+          <div class="sidebar-logo-text">
+            <span class="sidebar-brand">minkajplats<em>.se</em></span>
+            <span class="sidebar-sub">Båtklubbar i Stockholm</span>
+          </div>
+        </a>
       </div>
       <div class="search-wrap">
         <span class="search-icon">⚲</span>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om oss – Minkajplats.se</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:    #1a2e6c;
+      --navy-dk: #111f4d;
+      --sky:     #daeaf7;
+      --water:   #3a7fc1;
+      --sand:    #f5f0e8;
+      --rope:    #e8dfc8;
+      --text:    #1e2d3d;
+      --muted:   #5a6a7d;
+      --white:   #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(26,46,108,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; }
+    .nav-logo-text { font-size: 18px; font-weight: 700; color: var(--navy); }
+    .nav-logo-text span { color: var(--water); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      text-decoration: none; color: var(--text); font-size: 14px; font-weight: 500;
+      padding: 8px 16px; border-radius: 6px; transition: background .15s;
+    }
+    .nav-links a:hover { background: var(--sand); }
+    .nav-links a.active { color: var(--navy); font-weight: 600; }
+    .nav-cta { background: var(--navy) !important; color: var(--white) !important; border-radius: 8px !important; margin-left: 8px; }
+    .nav-cta:hover { background: var(--navy-dk) !important; }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(150deg, #eef5fc 0%, var(--white) 60%);
+      padding: 120px 40px 72px;
+      text-align: center;
+    }
+    .page-hero h1 { font-size: 44px; font-weight: 700; color: var(--navy); letter-spacing: -1px; margin-bottom: 14px; }
+    .page-hero p { font-size: 18px; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+    /* CONTENT */
+    .content { max-width: 760px; margin: 0 auto; padding: 72px 40px; }
+
+    .section-block { margin-bottom: 64px; }
+    .section-block h2 {
+      font-size: 26px; font-weight: 700; color: var(--navy);
+      margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 2px solid var(--rope);
+    }
+    .section-block p { font-size: 16px; color: var(--text); line-height: 1.75; margin-bottom: 14px; }
+    .section-block p:last-child { margin-bottom: 0; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      border: 1px solid var(--rope);
+      border-radius: 10px; overflow: hidden;
+    }
+    .faq-q {
+      padding: 18px 20px;
+      font-size: 15px; font-weight: 600; color: var(--navy);
+      cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--white); transition: background .15s;
+      list-style: none; user-select: none;
+    }
+    .faq-q:hover { background: var(--sand); }
+    .faq-q::after { content: '+'; font-size: 20px; font-weight: 300; color: var(--water); transition: transform .2s; }
+    details[open] .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      padding: 0 20px 18px;
+      font-size: 15px; color: var(--muted); line-height: 1.7;
+      background: var(--white);
+    }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: var(--navy);
+      border-radius: 16px; padding: 36px 32px;
+      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    }
+    .contact-card-text h3 { font-size: 20px; font-weight: 700; color: white; margin-bottom: 6px; }
+    .contact-card-text p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .contact-card a {
+      display: inline-block; background: white; color: var(--navy);
+      padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 700;
+      text-decoration: none; white-space: nowrap; transition: transform .15s;
+    }
+    .contact-card a:hover { transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-dk); padding: 36px 40px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .foot-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .foot-logo img { height: 26px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .foot-logo span { font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.6); }
+    .foot-links { display: flex; gap: 20px; }
+    .foot-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13px; transition: color .15s; }
+    .foot-links a:hover { color: rgba(255,255,255,0.85); }
+    .foot-copy { width: 100%; font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .page-hero { padding: 90px 20px 48px; }
+      .page-hero h1 { font-size: 32px; }
+      .content { padding: 48px 20px; }
+      .contact-card { flex-direction: column; gap: 20px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="/static/logo.svg" alt="Minkajplats" />
+    <span class="nav-logo-text">minkajplats<span>.se</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/stockholm">Kartan</a>
+    <a href="/om" class="active">Om oss</a>
+    <a href="/stockholm" class="nav-cta">Hitta kajplats →</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1>Om Minkajplats.se</h1>
+  <p>Vi gör det enkelt att hitta, jämföra och navigera till Stockholms alla båtklubbar.</p>
+</section>
+
+<div class="content">
+
+  <div class="section-block">
+    <h2>Vad är Minkajplats.se?</h2>
+    <p>Minkajplats.se är en kartplattform för båtentusiaster i Stockholmsregionen. Vi samlar information om alla båtklubbar och marinor på ett ställe — med exakta brygglägen, antal platser och kontaktuppgifter.</p>
+    <p>Varje markör på kartan är placerad vid den faktiska hamnen eller bryggan, inte vid en gatuadress. Det innebär att du direkt kan se om en klubb ligger vid vattnet du söker, och enkelt navigera dit.</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Varför byggde vi detta?</h2>
+    <p>Stockholm har en rik båtkultur med 80-talet klubbar spridda från innerstan till ytterskärgården. Men informationen om dessa klubbar är spridd på otaliga hemsidor, registeruppgifter och informationssidor — svår att överblicka.</p>
+    <p>Minkajplats.se samlar allt detta på en modern, lättanvänd karta. Målet är att göra det enkelt för den som letar kajplats att hitta rätt klubb, och för den nyfikne att utforska Stockholms båtliv.</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Data och noggrannhet</h2>
+    <p>Vi har granskat koordinaterna för samtliga klubbar och placerat varje markör vid den faktiska marinan — inte vid den registrerade postadressen. Information om antal platser, adresser och kontaktuppgifter samlas från offentliga källor och klubbarnas egna hemsidor.</p>
+    <p>Hittar du en felaktig uppgift? Hör gärna av dig så uppdaterar vi informationen.</p>
+  </div>
+
+  <div class="section-block" id="faq">
+    <h2>Vanliga frågor</h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">Hur hittar jag en ledig kajplats?</summary>
+        <div class="faq-a">Minkajplats.se visar var klubbarna finns och hur många platser de har totalt. För att ta reda på om det finns lediga platser behöver du kontakta respektive klubb direkt — klicka på en markör på kartan för att se telefonnummer och hemsida.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Vad betyder färgerna på markörerna?</summary>
+        <div class="faq-a">Blå markör = under 100 båtplatser. Orange = 100–199 platser. Röd = 200 platser eller fler. Grå = antal platser okänt. Klustrade markörer (siffra i cirkel) visar flera klubbar på samma område — zooma in för att separera dem.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Täcker ni hela Sverige?</summary>
+        <div class="faq-a">Just nu fokuserar vi på Stockholmsregionen med 80 klubbar. Vi jobbar med att expandera till fler städer och regioner framöver.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Stämmer all information?</summary>
+        <div class="faq-a">Vi gör vårt bästa för att hålla informationen korrekt och uppdaterad. Antal platser och kontaktuppgifter kan förändras — vi uppdaterar regelbundet men rekommenderar att alltid bekräfta uppgifter direkt med klubben.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Kan jag rapportera fel eller lägga till en klubb?</summary>
+        <div class="faq-a">Absolut! Hör av dig via e-post om du hittar en felaktighet eller vill lägga till en klubb som saknas. Vi uppdaterar löpande.</div>
+      </details>
+
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="contact-card">
+      <div class="contact-card-text">
+        <h3>Hör av dig</h3>
+        <p>Fel uppgift? Saknar din klubb? Vi uppdaterar gärna.</p>
+      </div>
+      <a href="mailto:hej@minkajplats.se">Kontakta oss →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a class="foot-logo" href="/">
+    <img src="/static/logo.svg" alt="Minkajplats" />
+    <span>minkajplats.se</span>
+  </a>
+  <div class="foot-links">
+    <a href="/stockholm">Kartan</a>
+    <a href="/om">Om oss</a>
+    <a href="/om#faq">FAQ</a>
+  </div>
+  <div class="foot-copy">© 2025 Minkajplats.se – Kartan över alla båtplatser i Stockholm</div>
+</footer>
+
+</body>
+</html>

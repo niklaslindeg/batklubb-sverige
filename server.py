@@ -44,6 +44,11 @@ def stockholm():
     return send_from_directory("static", "stockholm.html")
 
 
+@app.route("/om")
+def om():
+    return send_from_directory("static", "om.html")
+
+
 @app.route("/api/stockholm")
 def api_stockholm():
     from flask import request

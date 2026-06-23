@@ -3,161 +3,313 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Båtklubbar i Sverige</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="style.css" />
+  <title>Minkajplats.se – Kartan över alla båtplatser</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:    #1a2e6c;
+      --navy-dk: #111f4d;
+      --sky:     #daeaf7;
+      --water:   #3a7fc1;
+      --sand:    #f5f0e8;
+      --rope:    #e8dfc8;
+      --text:    #1e2d3d;
+      --muted:   #5a6a7d;
+      --white:   #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(26,46,108,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; }
+    .nav-logo-text { font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
+    .nav-logo-text span { color: var(--water); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      text-decoration: none; color: var(--text); font-size: 14px; font-weight: 500;
+      padding: 8px 16px; border-radius: 6px; transition: background .15s;
+    }
+    .nav-links a:hover { background: var(--sand); }
+    .nav-cta {
+      background: var(--navy) !important; color: var(--white) !important;
+      border-radius: 8px !important; margin-left: 8px;
+    }
+    .nav-cta:hover { background: var(--navy-dk) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(150deg, #eef5fc 0%, var(--white) 45%, #f8f4ee 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 40px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-blob {
+      position: absolute; pointer-events: none;
+      border-radius: 50%; filter: blur(80px); opacity: 0.5;
+    }
+    .blob1 { width: 500px; height: 500px; background: #c8dff5; top: -100px; right: -100px; }
+    .blob2 { width: 400px; height: 400px; background: #e8dfc8; bottom: -80px; left: -80px; }
+    .hero-inner {
+      max-width: 1100px; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--sky); color: var(--navy);
+      border-radius: 20px; padding: 5px 14px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    h1 {
+      font-size: clamp(34px, 4.5vw, 56px); font-weight: 700; line-height: 1.1;
+      color: var(--navy); letter-spacing: -1px; margin-bottom: 18px;
+    }
+    h1 em { color: var(--water); font-style: normal; }
+    .hero-sub {
+      font-size: 17px; color: var(--muted); line-height: 1.65;
+      max-width: 420px; margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); color: var(--white);
+      padding: 14px 28px; border-radius: 10px; font-size: 16px; font-weight: 600;
+      text-decoration: none; transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 20px rgba(26,46,108,0.28);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(26,46,108,0.35); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--navy);
+      padding: 14px 28px; border-radius: 10px; font-size: 16px; font-weight: 600;
+      text-decoration: none; border: 2px solid rgba(26,46,108,0.18);
+      transition: border-color .15s, background .15s;
+    }
+    .btn-ghost:hover { border-color: var(--navy); background: rgba(26,46,108,0.04); }
+
+    /* Hero visual card */
+    .hero-visual { display: flex; justify-content: center; }
+    .hero-card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 24px 64px rgba(26,46,108,0.13), 0 4px 16px rgba(0,0,0,0.05);
+      padding: 44px 40px 36px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; width: 300px;
+    }
+    .hero-card img { width: 150px; height: 150px; object-fit: contain; margin-bottom: 8px; }
+    .hero-card-title { font-size: 22px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+    .hero-card-title span { color: var(--water); }
+    .hero-card-sub { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 20px; }
+    .hero-card-stats { display: flex; gap: 20px; width: 100%; justify-content: center; padding-top: 20px; border-top: 1px solid var(--rope); }
+    .hcs { text-align: center; }
+    .hcs-n { font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1; }
+    .hcs-l { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 3px; }
+
+    /* FEATURES */
+    .features { background: var(--navy); padding: 88px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .sec-head { text-align: center; margin-bottom: 52px; }
+    .sec-head h2 { font-size: 32px; font-weight: 700; color: white; margin-bottom: 10px; }
+    .sec-head p { font-size: 16px; color: rgba(255,255,255,0.55); max-width: 460px; margin: 0 auto; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .fc {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 32px 26px; transition: background .2s;
+    }
+    .fc:hover { background: rgba(255,255,255,0.11); }
+    .fc-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: rgba(58,127,193,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 18px;
+    }
+    .fc h3 { font-size: 17px; font-weight: 600; color: white; margin-bottom: 8px; }
+    .fc p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* HOW */
+    .how { background: var(--sand); padding: 88px 40px; }
+    .how .sec-head h2 { color: var(--navy); }
+    .how .sec-head p { color: var(--muted); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .step { text-align: center; }
+    .step-n {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--navy); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700; margin: 0 auto 18px;
+    }
+    .step h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, #1a2e6c 0%, #1a4a8a 100%);
+      padding: 80px 40px; text-align: center;
+    }
+    .cta h2 { font-size: 34px; font-weight: 700; color: white; margin-bottom: 12px; }
+    .cta p { font-size: 17px; color: rgba(255,255,255,0.65); margin-bottom: 32px; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--navy);
+      padding: 15px 32px; border-radius: 10px; font-size: 16px; font-weight: 700;
+      text-decoration: none; transition: transform .15s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-dk); padding: 40px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .foot-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .foot-logo img { height: 26px; filter: brightness(0) invert(1); opacity: 0.6; }
+    .foot-logo span { font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.6); }
+    .foot-links { display: flex; gap: 20px; }
+    .foot-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13px; transition: color .15s; }
+    .foot-links a:hover { color: rgba(255,255,255,0.85); }
+    .foot-copy { width: 100%; font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding: 88px 20px 40px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-visual { order: -1; }
+      .hero-card { width: 260px; padding: 32px; }
+      .hero-card img { width: 120px; height: 120px; }
+      .features, .how { padding: 60px 20px; }
+      .feature-grid, .steps { grid-template-columns: 1fr; gap: 14px; }
+      .cta { padding: 60px 20px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
 </head>
 <body>
 
-<div id="app">
-  <aside id="sidebar">
-    <div id="sidebar-header">
-      <h1>⚓ Båtklubbar i Sverige</h1>
-      <input id="search" type="search" placeholder="Sök klubb eller ort..." autocomplete="off" />
-      <div id="stats"></div>
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="/static/logo.svg" alt="Minkajplats" />
+    <span class="nav-logo-text">minkajplats<span>.se</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/stockholm">Kartan</a>
+    <a href="/om">Om oss</a>
+    <a href="/stockholm" class="nav-cta">Hitta kajplats →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">Stockholm · 80 klubbar</div>
+      <h1>Hitta din<br><em>kajplats</em><br>i Stockholm</h1>
+      <p class="hero-sub">Kartan över alla båtklubbar och marinor i Stockholmsregionen. Jämför platser, hitta rätt klubb och se exakt var de ligger.</p>
+      <div class="hero-actions">
+        <a href="/stockholm" class="btn-primary">Öppna kartan →</a>
+        <a href="/om" class="btn-ghost">Läs mer</a>
+      </div>
     </div>
-    <ul id="club-list"></ul>
-  </aside>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <img src="/static/logo.svg" alt="Minkajplats.se" />
+        <div class="hero-card-title">minkajplats<span>.se</span></div>
+        <div class="hero-card-sub">Kartan över alla båtplatser</div>
+        <div class="hero-card-stats">
+          <div class="hcs"><div class="hcs-n">80</div><div class="hcs-l">Klubbar</div></div>
+          <div class="hcs"><div class="hcs-n">9 353</div><div class="hcs-l">Platser</div></div>
+          <div class="hcs"><div class="hcs-n">6</div><div class="hcs-l">Distrikt</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div id="map"></div>
-</div>
+<section class="features">
+  <div class="section-inner">
+    <div class="sec-head">
+      <h2>Allt på ett ställe</h2>
+      <p>Vi samlar information om Stockholms alla båtklubbar så att du enkelt hittar rätt kajplats.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="fc">
+        <div class="fc-icon">🗺</div>
+        <h3>Interaktiv karta</h3>
+        <p>Se alla klubbar på kartan med satellitvy. Klicka på en markör för fullständig information om klubben.</p>
+      </div>
+      <div class="fc">
+        <div class="fc-icon">⚓</div>
+        <h3>Antal båtplatser</h3>
+        <p>Färgkodade markörer visar storlek på varje klubb. Filtrera på distrikt och sortera efter platser eller namn.</p>
+      </div>
+      <div class="fc">
+        <div class="fc-icon">📍</div>
+        <h3>Exakta brygglägen</h3>
+        <p>Varje markör sitter vid den faktiska bryggan — inte vid en gatuadress. Zooma in och se exakt var du ska.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div id="popup-panel" class="hidden">
-  <button id="popup-close">✕</button>
-  <div id="popup-content"></div>
-</div>
+<section class="how">
+  <div class="section-inner">
+    <div class="sec-head">
+      <h2>Så här fungerar det</h2>
+      <p>Tre enkla steg för att hitta din nästa kajplats</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <h3>Öppna kartan</h3>
+        <p>Gå till kartvyn och få en översikt av alla 80 båtklubbar i Stockholmsregionen — från innerstan till skärgården.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <h3>Filtrera och sök</h3>
+        <p>Välj distrikt, sortera på antal platser eller sök direkt på klubbnamn eller område. Zooma in för detaljer.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <h3>Kontakta klubben</h3>
+        <p>Klicka på en markör för att se adress, telefon, hemsida och antal platser. Ta kontakt direkt därifrån.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-  // ── Karta ──────────────────────────────────────────────────────────────────
-  const map = L.map("map", { center: [62.5, 16.5], zoom: 5 });
+<section class="cta">
+  <h2>Redo att hitta din kajplats?</h2>
+  <p>80 klubbar · 9 353 platser · Allt på en karta</p>
+  <a href="/stockholm" class="btn-white">Öppna kartan →</a>
+</section>
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 19,
-  }).addTo(map);
+<footer>
+  <a class="foot-logo" href="/">
+    <img src="/static/logo.svg" alt="Minkajplats" />
+    <span>minkajplats.se</span>
+  </a>
+  <div class="foot-links">
+    <a href="/stockholm">Kartan</a>
+    <a href="/om">Om oss</a>
+    <a href="/om#faq">FAQ</a>
+  </div>
+  <div class="foot-copy">© 2025 Minkajplats.se – Kartan över alla båtplatser i Stockholm</div>
+</footer>
 
-  const boatIcon = L.divIcon({
-    className: "boat-marker",
-    html: "⚓",
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
-  });
-
-  // ── State ──────────────────────────────────────────────────────────────────
-  let allClubs = [];
-  let markers = {};   // name → L.marker
-  let activeMarker = null;
-
-  // ── Hämta data ─────────────────────────────────────────────────────────────
-  async function loadClubs() {
-    try {
-      const res = await fetch("/api/clubs");
-      const data = await res.json();
-      allClubs = data.clubs;
-      document.getElementById("stats").textContent =
-        `${data.mapped} klubbar på kartan · ${data.total} totalt`;
-      renderList(allClubs);
-      renderMarkers(allClubs);
-    } catch (e) {
-      document.getElementById("stats").textContent = "Fel vid laddning av data.";
-      console.error(e);
-    }
-  }
-
-  // ── Karta: lägg ut markörer ────────────────────────────────────────────────
-  function renderMarkers(clubs) {
-    // Rensa gamla
-    Object.values(markers).forEach(m => map.removeLayer(m));
-    markers = {};
-
-    clubs.forEach(club => {
-      if (club.lat == null || club.lon == null) return;
-
-      const m = L.marker([club.lat, club.lon], { icon: boatIcon })
-        .addTo(map)
-        .on("click", () => showPanel(club, m));
-
-      markers[club.name] = m;
-    });
-  }
-
-  // ── Sidopanel: klubbinfo ───────────────────────────────────────────────────
-  function showPanel(club, marker) {
-    if (activeMarker) activeMarker.getElement()?.classList.remove("active");
-    activeMarker = marker;
-    marker.getElement()?.classList.add("active");
-
-    const content = document.getElementById("popup-content");
-    content.innerHTML = `
-      <h2>${esc(club.name)}</h2>
-      ${club.city    ? `<p class="meta">📍 ${esc(club.city)}</p>` : ""}
-      ${club.address ? `<p class="meta">🏠 ${esc(club.address)}</p>` : ""}
-      ${club.phone   ? `<p class="meta">📞 <a href="tel:${esc(club.phone)}">${esc(club.phone)}</a></p>` : ""}
-      ${club.email   ? `<p class="meta">✉️ <a href="mailto:${esc(club.email)}">${esc(club.email)}</a></p>` : ""}
-      ${club.url     ? `<p class="meta">🌐 <a href="${esc(club.url)}" target="_blank" rel="noopener">Besök hemsida</a></p>` : ""}
-      <p class="source">Källa: ${esc(club.source || "okänd")}</p>
-    `;
-    document.getElementById("popup-panel").classList.remove("hidden");
-    map.setView([club.lat, club.lon], Math.max(map.getZoom(), 11), { animate: true });
-  }
-
-  document.getElementById("popup-close").addEventListener("click", () => {
-    document.getElementById("popup-panel").classList.add("hidden");
-    if (activeMarker) activeMarker.getElement()?.classList.remove("active");
-    activeMarker = null;
-  });
-
-  // ── Sidolista ──────────────────────────────────────────────────────────────
-  function renderList(clubs) {
-    const ul = document.getElementById("club-list");
-    ul.innerHTML = "";
-    clubs.forEach(club => {
-      const li = document.createElement("li");
-      li.textContent = club.name;
-      if (club.city) {
-        const span = document.createElement("span");
-        span.textContent = club.city;
-        li.appendChild(span);
-      }
-      li.addEventListener("click", () => {
-        if (club.lat != null) {
-          const m = markers[club.name];
-          if (m) showPanel(club, m);
-        }
-      });
-      ul.appendChild(li);
-    });
-  }
-
-  // ── Sök ───────────────────────────────────────────────────────────────────
-  let searchTimer;
-  document.getElementById("search").addEventListener("input", e => {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {
-      const q = e.target.value.toLowerCase().trim();
-      const filtered = q
-        ? allClubs.filter(c =>
-            c.name?.toLowerCase().includes(q) ||
-            c.city?.toLowerCase().includes(q) ||
-            c.address?.toLowerCase().includes(q)
-          )
-        : allClubs;
-      renderList(filtered);
-      renderMarkers(filtered);
-    }, 200);
-  });
-
-  // ── Hjälpfunktion ──────────────────────────────────────────────────────────
-  function esc(str) {
-    return String(str ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
-
-  loadClubs();
-</script>
 </body>
 </html>
