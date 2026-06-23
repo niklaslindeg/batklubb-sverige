@@ -12,21 +12,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:    #0e3530;
-      --navy-dk: #0a2a28;
-      --water:   #1a6eb5;
+      --navy:    #1a2e6c;
+      --navy-dk: #111f4d;
+      --water:   #3a7fc1;
       --sand:    #f5f0e8;
-      --rope:    #e8dfc8;
-      --rope-dk: #c8b896;
+      --rope:    #daeaf7;
+      --rope-dk: #b8d4ec;
       --wood:    #8b6914;
       --text:    #1e2d3d;
       --muted:   #6b7c8d;
       --white:   #ffffff;
       --red:     #c02020;
       --green:   #2e6b47;
-      /* panel accent — readable teal on light backgrounds */
-      --teal:    #0b7b8a;
-      --teal-lt: #e6f4f5;
+      /* panel accent */
+      --teal:    #3a7fc1;
+      --teal-lt: #eef5fc;
     }
 
     html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--sand); color: var(--text); overflow: hidden; }
@@ -224,7 +224,7 @@
 
     /* ── Markör-tooltip ──────────────────────────────── */
     .leaflet-tooltip.club-tip {
-      background: rgba(10,42,40,0.93);
+      background: rgba(17,31,77,0.93);
       border: 1px solid rgba(232,223,200,0.35);
       border-radius: 5px;
       color: #e8dfc8;
@@ -235,7 +235,7 @@
       pointer-events: none;
       white-space: nowrap;
     }
-    .leaflet-tooltip.club-tip::before { border-top-color: rgba(10,42,40,0.93); }
+    .leaflet-tooltip.club-tip::before { border-top-color: rgba(17,31,77,0.93); }
     .club-tip-name { font-weight: 600; font-size: 13px; color: #fff; }
     .club-tip-addr { opacity: 0.75; margin-top: 2px; }
 
@@ -414,7 +414,7 @@
 
     /* Cluster icons */
     .cluster-icon {
-      background: rgba(10,42,40,0.92);
+      background: rgba(17,31,77,0.92);
       border: 2px solid rgba(232,223,200,0.4);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
