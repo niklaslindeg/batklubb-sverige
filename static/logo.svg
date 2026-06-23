@@ -1,24 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
-  <!-- Map base -->
-  <rect x="20" y="100" width="160" height="80" rx="10" fill="#daeaf7" opacity="0.7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 520" fill="none">
+  <defs>
+    <clipPath id="mapClip">
+      <path d="M95 310 Q95 295 110 290 L250 248 L390 248 L405 252 L415 258 L420 268 L418 280 L390 360 L350 395 Q340 402 330 398 L248 375 L166 398 Q156 402 146 395 L110 360 L92 318 Z"/>
+    </clipPath>
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d6e8f5"/>
+      <stop offset="50%" stop-color="#b8d4ec"/>
+      <stop offset="100%" stop-color="#cce0f3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ── MAP BASE (perspective rectangle) ── -->
+  <!-- Shadow -->
+  <path d="M100 322 Q100 308 115 303 L252 262 L388 262 L402 266 L412 273 L416 284 L386 368 L344 402 Q334 409 323 405 L248 382 L173 405 Q162 409 152 402 L118 368 L98 328 Z"
+        fill="rgba(0,0,0,0.08)" transform="translate(3,5)"/>
+  <!-- Map body -->
+  <path d="M100 322 Q100 308 115 303 L252 262 L388 262 L402 266 L412 273 L416 284 L386 368 L344 402 Q334 409 323 405 L248 382 L173 405 Q162 409 152 402 L118 368 L98 328 Z"
+        fill="url(#waterGrad)"/>
   <!-- Water patches on map -->
-  <ellipse cx="70" cy="130" rx="28" ry="14" fill="#a8cce8" opacity="0.7"/>
-  <ellipse cx="140" cy="148" rx="22" ry="10" fill="#a8cce8" opacity="0.7"/>
+  <ellipse cx="200" cy="330" rx="55" ry="22" fill="#a8c8e8" opacity="0.6"/>
+  <ellipse cx="195" cy="325" rx="38" ry="14" fill="#90b8e0" opacity="0.5"/>
+  <ellipse cx="320" cy="350" rx="48" ry="18" fill="#a8c8e8" opacity="0.55"/>
+  <ellipse cx="340" cy="378" rx="30" ry="11" fill="#90b8e0" opacity="0.45"/>
+  <ellipse cx="155" cy="365" rx="28" ry="10" fill="#b0cce8" opacity="0.4"/>
+  <!-- Light land patches -->
+  <ellipse cx="270" cy="295" rx="40" ry="12" fill="rgba(255,255,255,0.5)"/>
+  <ellipse cx="360" cy="305" rx="30" ry="10" fill="rgba(255,255,255,0.4)"/>
+  <ellipse cx="150" cy="300" rx="25" ry="9" fill="rgba(255,255,255,0.45)"/>
+
   <!-- Small pins on map -->
-  <circle cx="55" cy="118" r="5" fill="#1a2e6c"/>
-  <path d="M55 123 L55 118" stroke="#1a2e6c" stroke-width="2"/>
-  <circle cx="130" cy="122" r="5" fill="#1a2e6c"/>
-  <path d="M130 127 L130 122" stroke="#1a2e6c" stroke-width="2"/>
-  <circle cx="155" cy="132" r="5" fill="#1a2e6c"/>
-  <path d="M155 137 L155 132" stroke="#1a2e6c" stroke-width="2"/>
-  <!-- Map pin body -->
-  <path d="M100 20 C79 20 62 37 62 58 C62 82 100 110 100 110 C100 110 138 82 138 58 C138 37 121 20 100 20Z" fill="#1a2e6c"/>
+  <!-- Pin 1 (left) -->
+  <g transform="translate(148,302)">
+    <path d="M0 -14 C-6 -14 -10 -9 -10 -4 C-10 3 0 14 0 14 C0 14 10 3 10 -4 C10 -9 6 -14 0 -14Z" fill="#4a7cc7"/>
+    <circle cx="0" cy="-4" r="4.5" fill="white"/>
+  </g>
+  <!-- Pin 2 (top right) -->
+  <g transform="translate(340,285)">
+    <path d="M0 -13 C-5.5 -13 -9 -8.5 -9 -4 C-9 3 0 13 0 13 C0 13 9 3 9 -4 C9 -8.5 5.5 -13 0 -13Z" fill="#4a7cc7"/>
+    <circle cx="0" cy="-4" r="4" fill="white"/>
+  </g>
+  <!-- Pin 3 (center right) -->
+  <g transform="translate(362,346)">
+    <path d="M0 -13 C-5.5 -13 -9 -8.5 -9 -4 C-9 3 0 13 0 13 C0 13 9 3 9 -4 C9 -8.5 5.5 -13 0 -13Z" fill="#4a7cc7"/>
+    <circle cx="0" cy="-4" r="4" fill="white"/>
+  </g>
+  <!-- Pin 4 (bottom center) -->
+  <g transform="translate(248,375)">
+    <path d="M0 -12 C-5 -12 -8.5 -8 -8.5 -3.5 C-8.5 2.5 0 12 0 12 C0 12 8.5 2.5 8.5 -3.5 C8.5 -8 5 -12 0 -12Z" fill="#4a7cc7"/>
+    <circle cx="0" cy="-3.5" r="3.5" fill="white"/>
+  </g>
+
+  <!-- ── MAIN PIN ── -->
+  <!-- Pin shadow -->
+  <path d="M248 52 C206 52 172 86 172 128 C172 182 248 272 248 272 C248 272 324 182 324 128 C324 86 290 52 248 52Z"
+        fill="rgba(0,0,0,0.12)" transform="translate(4,6)"/>
+  <!-- Pin body -->
+  <path d="M248 52 C206 52 172 86 172 128 C172 182 248 272 248 272 C248 272 324 182 324 128 C324 86 290 52 248 52Z"
+        fill="#192d61"/>
   <!-- Pin inner circle -->
-  <circle cx="100" cy="57" r="22" fill="white"/>
-  <!-- Boat icon -->
-  <path d="M88 62 L112 62 L108 68 L92 68 Z" fill="#1a2e6c"/>
-  <path d="M100 50 L100 62" stroke="#1a2e6c" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M100 50 L110 58 L100 58Z" fill="#1a2e6c"/>
-  <!-- Waves under boat -->
-  <path d="M88 70 Q92 68 96 70 Q100 72 104 70 Q108 68 112 70" stroke="#1a2e6c" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <circle cx="248" cy="122" r="48" fill="white"/>
+
+  <!-- Boat icon inside pin -->
+  <!-- Hull -->
+  <path d="M222 138 L274 138 L268 148 L228 148 Z" fill="#192d61"/>
+  <!-- Cabin/superstructure -->
+  <rect x="234" y="122" width="28" height="16" rx="3" fill="#192d61"/>
+  <!-- Funnel/chimney -->
+  <rect x="244" y="115" width="8" height="9" rx="2" fill="#192d61"/>
+  <!-- Mast -->
+  <line x1="248" y1="105" x2="248" y2="122" stroke="#192d61" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Waves -->
+  <path d="M222 151 Q228 148 234 151 Q240 154 246 151 Q252 148 258 151 Q264 154 270 151 Q273 149 274 151" stroke="#192d61" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M225 156 Q230 153 236 156 Q242 159 248 156 Q254 153 260 156 Q265 159 270 156" stroke="#192d61" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+  <!-- ── TYPOGRAPHY ── -->
+  <!-- minkajplats.se -->
+  <text x="250" y="450" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="58" letter-spacing="-1">
+    <tspan fill="#192d61">minkajplats</tspan><tspan fill="#4a7cc7">.se</tspan>
+  </text>
+
+  <!-- Subtitle -->
+  <text x="250" y="488" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="16" fill="#3a5080" letter-spacing="2.5">KARTAN ÖVER ALLA BÅTPLATSER</text>
 </svg>
